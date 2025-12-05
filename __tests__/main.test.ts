@@ -71,7 +71,10 @@ async function setupOIDCMocks(
   nock(issuer).get(JWKS_PATH).reply(200, jwks)
 
   // Mock OIDC token endpoint for populating the provenance
-  nock(issuer).get(TOKEN_PATH).query({ audience: AUDIENCE }).reply(200, { value: jwt })
+  nock(issuer)
+    .get(TOKEN_PATH)
+    .query({ audience: AUDIENCE })
+    .reply(200, { value: jwt })
 }
 
 describe('main', () => {
